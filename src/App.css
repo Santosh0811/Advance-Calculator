@@ -1,0 +1,113 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.clickable-btn {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.clickable-btn.pressed {
+    transform: scale(0.95);
+}
+
+
+.panel-1 {
+    height: 100vh;
+}
+
+.shape-2 {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calc-1 {
+    width: 100%;
+    padding: 10px;
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: right;
+    height: 70px;
+    font-family: monospace;
+    background-color: rgb(77, 102, 70);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: rgba(160, 160, 160, 0.753);
+    transform: scale(0.98);
+}
+
+.mobile {
+    display: none;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.input-blink::after {
+    content: '|';
+    position: absolute;
+    top: 38%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: black;
+    animation: blink 1s step-end infinite;
+    font-size: 30px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@media screen and (max-width: 1080px) {
+    .panel-1 {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .shape-1 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .screen-1 {
+        padding: 20px;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .laptop {
+        display: none;
+    }
+
+    /* .BMI-1 {
+        margin-bottom: 10px;
+    } */
+
+    .input-blink::after {
+        top: 42.5%;
+    }
+}
