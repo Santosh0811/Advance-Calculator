@@ -16,7 +16,7 @@ body {
 
 
 .panel-1 {
-    height: 100vh;
+    height: auto;
 }
 
 .shape-2 {
@@ -102,11 +102,7 @@ button:active {
     .laptop {
         display: none;
     }
-
-    /* .BMI-1 {
-        margin-bottom: 10px;
-    } */
-
+    
     .input-blink::after {
         top: 42.5%;
     }
