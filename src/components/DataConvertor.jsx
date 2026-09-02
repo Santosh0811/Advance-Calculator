@@ -23,8 +23,9 @@ const DataConvertor = () => {
 
 
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-        convertUnits(e.target.value);
+        const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
+        setInputValue(value);
+        convertUnits(value);
     };
 
     const handleInputUnitChange = (e) => {
@@ -63,14 +64,9 @@ const DataConvertor = () => {
                         value={inputValue}
                         onChange={handleInputChange}
                         placeholder="Enter value"
-                        className='border-2 border-slate-500 p-1 rounded'
-                        type='number'
-                        style={{
-                            WebkitAppearance: 'none',
-                            MozAppearance: 'textfield',
-                            color: "white",
-                            backgroundColor: "transparent"
-                        }}
+                        className='border-2 text-white bg-transparent border-slate-500 p-1 rounded'
+                        type="text"
+                        inputMode="decimal"
                     />
                     <select
                         value={inputUnit}

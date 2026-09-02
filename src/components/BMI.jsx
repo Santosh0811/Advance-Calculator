@@ -18,12 +18,12 @@ const BMI = () => {
     };
 
     const handleInputChangeWeight = (e) => {
-        const value = e.target.value;
+        const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
         setinputWeightValue(value);
     };
 
     const handleInputChangeHeight = (e) => {
-        const value = e.target.value;
+        const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
         setinputHeightValue(value);
     };
 
@@ -58,7 +58,7 @@ const BMI = () => {
                 BMI Calculator
             </div>
 
-            <div className='mt-2 text-white'>
+            <div className='mt-2 text-white max-w-[300px] overflow-x-auto'>
                 <div className='flex flex-col gap-3'>
                     {outputValue ? (
                         <span className='italic'>BMI ≈ {outputValue.toFixed(5)} is <span className='font-bold'>{category}</span></span>
@@ -75,33 +75,23 @@ const BMI = () => {
                         <div className='flex gap-10'>
                             <span className='italic'>kg Weight</span>
                             <input
-                                className='border-2 border-slate-500 p-0 w-36 rounded'
+                                className='border-2 text-white bg-transparent border-slate-500 p-1 w-36 rounded'
                                 value={inputWeightValue}
                                 onChange={handleInputChangeWeight}
                                 placeholder="Enter in Kgs"
-                                type='number'
-                                style={{
-                                    WebkitAppearance: 'none',
-                                    MozAppearance: 'textfield',
-                                    color: "white",
-                                    backgroundColor: "transparent"
-                                }}
+                                type="text"
+                                inputMode="decimal"
                             />
                         </div>
                         <div className='flex gap-11.5'>
                             <span className='italic'>m Height</span>
                             <input
-                                className='border-2 border-slate-500 p-0 w-36 rounded'
+                                className='border-2 text-white bg-transparent border-slate-500 p-1 w-36 rounded'
                                 value={inputHeightValue}
                                 onChange={handleInputChangeHeight}
                                 placeholder="Enter in Mts"
-                                type='number'
-                                style={{
-                                    WebkitAppearance: 'none',
-                                    MozAppearance: 'textfield',
-                                    color: "white",
-                                    backgroundColor: "transparent"
-                                }}
+                                type="text"
+                                inputMode="decimal"
                             />
                         </div>
                     </div>
@@ -134,90 +124,90 @@ const BMI = () => {
                         </div>
                     )}
 
+                </div>
+            </div>
 
-                    <button data-popover-target="popover-default" type="button" className="text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center laptop">BMI Chart</button>
+            <button data-popover-target="popover-default" type="button" className="w-full mt-2 text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center laptop">BMI Chart</button>
 
-                    <button className="text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mobile" onClick={handleBMIChart}>BMI Chart</button>
+            <button className="w-full mt-2 text-white bg-slate-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mobile" onClick={handleBMIChart}>BMI Chart</button>
 
-                    <div data-popover id="popover-default" role="tooltip" className="absolute z-10 invisible inline-block w-80 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                        <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                            <h3 className="font-semibold text-white text-center">BMI Chart</h3>
-                        </div>
-                        <div className="px-3 py-2">
-                            <table className='min-w-full text-center table-auto bg-transparent border-2 border-gray-200 shadow-md'>
-                                <thead className='bg-slate-400 text-black'>
-                                    <tr>
-                                        <th className='px-6 py-3 font-bold text-md border-r-2 border-gray-300'>BMI Range</th>
-                                        <th className='px-6 py-3 font-bold text-md'>Category</th>
-                                    </tr>
-                                </thead>
-                                <tbody className='divide-y divide-gray-200'>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>Below 18.5</td>
-                                        <td className='px-6 py-3 text-sm'>Under Weight</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>18.5 - 24.9</td>
-                                        <td className='px-6 py-3 text-sm'>Normal Weight</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>25 - 29.9</td>
-                                        <td className='px-6 py-3 text-sm'>Over Weight</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>30 - 34.9</td>
-                                        <td className='px-6 py-3 text-sm'>Obesity (Class 1)</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>35 - 39.9</td>
-                                        <td className='px-6 py-3 text-sm'>Obesity (Class 2)</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>40 and above</td>
-                                        <td className='px-6 py-3 text-sm'>Obesity (Class 3)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-
-                    {isVisible && <table className='min-w-full text-center table-auto bg-transparent border-2 border-gray-200 shadow-md'>
+            <div data-popover id="popover-default" role="tooltip" className="absolute z-10 invisible inline-block w-80 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 className="font-semibold text-white text-center">BMI Chart</h3>
+                </div>
+                <div className="px-3 py-2">
+                    <table className='min-w-full text-center table-auto bg-transparent border-2 border-gray-200 shadow-md'>
                         <thead className='bg-slate-400 text-black'>
                             <tr>
-                                <th className='px-4 py-3 font-bold text-md border-r-2 border-gray-300'>BMI Range</th>
-                                <th className='px-4 py-3 font-bold text-md'>Category</th>
+                                <th className='px-6 py-3 font-bold text-md border-r-2 border-gray-300'>BMI Range</th>
+                                <th className='px-6 py-3 font-bold text-md'>Category</th>
                             </tr>
                         </thead>
                         <tbody className='divide-y divide-gray-200'>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>Below 18.5</td>
-                                <td className='px-4 py-3 text-sm'>Under Weight</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>Below 18.5</td>
+                                <td className='px-6 py-3 text-sm'>Under Weight</td>
                             </tr>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>18.5 - 24.9</td>
-                                <td className='px-4 py-3 text-sm'>Normal Weight</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>18.5 - 24.9</td>
+                                <td className='px-6 py-3 text-sm'>Normal Weight</td>
                             </tr>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>25 - 29.9</td>
-                                <td className='px-4 py-3 text-sm'>Over Weight</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>25 - 29.9</td>
+                                <td className='px-6 py-3 text-sm'>Over Weight</td>
                             </tr>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>30 - 34.9</td>
-                                <td className='px-4 py-3 text-sm'>Obesity (Class 1)</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>30 - 34.9</td>
+                                <td className='px-6 py-3 text-sm'>Obesity (Class 1)</td>
                             </tr>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>35 - 39.9</td>
-                                <td className='px-4 py-3 text-sm'>Obesity (Class 2)</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>35 - 39.9</td>
+                                <td className='px-6 py-3 text-sm'>Obesity (Class 2)</td>
                             </tr>
                             <tr>
-                                <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>40 and above</td>
-                                <td className='px-4 py-3 text-sm'>Obesity (Class 3)</td>
+                                <td className='px-6 py-3 text-sm border-r-2 border-gray-300'>40 and above</td>
+                                <td className='px-6 py-3 text-sm'>Obesity (Class 3)</td>
                             </tr>
                         </tbody>
-                    </table>}
+                    </table>
                 </div>
+                <div data-popper-arrow></div>
             </div>
+
+            {isVisible && <table className='min-w-full mt-2 text-center table-auto bg-transparent border-2 border-gray-200 shadow-md'>
+                <thead className='bg-slate-400 text-black'>
+                    <tr>
+                        <th className='px-4 py-3 font-bold text-md border-r-2 border-gray-300'>BMI Range</th>
+                        <th className='px-4 py-3 font-bold text-md'>Category</th>
+                    </tr>
+                </thead>
+                <tbody className='divide-y divide-gray-200 text-white'>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>Below 18.5</td>
+                        <td className='px-4 py-3 text-sm'>Under Weight</td>
+                    </tr>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>18.5 - 24.9</td>
+                        <td className='px-4 py-3 text-sm'>Normal Weight</td>
+                    </tr>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>25 - 29.9</td>
+                        <td className='px-4 py-3 text-sm'>Over Weight</td>
+                    </tr>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>30 - 34.9</td>
+                        <td className='px-4 py-3 text-sm'>Obesity (Class 1)</td>
+                    </tr>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>35 - 39.9</td>
+                        <td className='px-4 py-3 text-sm'>Obesity (Class 2)</td>
+                    </tr>
+                    <tr>
+                        <td className='px-4 py-3 text-sm border-r-2 border-gray-300'>40 and above</td>
+                        <td className='px-4 py-3 text-sm'>Obesity (Class 3)</td>
+                    </tr>
+                </tbody>
+            </table>}
         </div>
     );
 };

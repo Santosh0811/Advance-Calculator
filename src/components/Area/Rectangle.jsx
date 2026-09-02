@@ -13,12 +13,12 @@ const Rectangle = () => {
   };
 
   const handleInputChangeLength = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
     setInputLengthValue(value);
   };
 
   const handleInputChangeWidth = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
     setInputWidthValue(value);
   };
 
@@ -32,7 +32,7 @@ const Rectangle = () => {
   }, [inputLengthValue, inputWidthValue]);
 
   return (
-    <div className='flex flex-col gap-10'>
+    <div className='flex flex-col gap-10 max-w-[340px] overflow-x-auto'>
       {outputValue ? (
         <div
           className="text-xl italic"
@@ -53,33 +53,23 @@ const Rectangle = () => {
         <div>
           <span className='text-2xl mr-2 italic'>l</span>Length
           <input
-            className='ml-5 border-2 border-slate-500 w-36'
+            className='ml-5 text-white bg-transparent border-2 border-slate-500 w-36'
             value={inputLengthValue}
             onChange={handleInputChangeLength}
             placeholder="Enter value"
-            type='number'
-            style={{
-              '-webkit-appearance': 'none',
-              '-moz-appearance': 'textfield',
-              color: "white",
-              backgroundColor: "transparent"
-            }}
+            type="text"
+            inputMode="decimal"
           />
         </div>
         <div>
           <span className='text-2xl mr-2 italic'>w</span>Width
           <input
-            className='ml-4 border-2 border-slate-500 w-36'
+            className='ml-5 text-white bg-transparent border-2 border-slate-500 w-36'
             value={inputWidthValue}
             onChange={handleInputChangeWidth}
             placeholder="Enter value"
-            type='number'
-            style={{
-              '-webkit-appearance': 'none',
-              '-moz-appearance': 'textfield',
-              color: "white",
-              backgroundColor: "transparent"
-            }}
+            type="text"
+            inputMode="decimal"
           />
         </div>
       </div>

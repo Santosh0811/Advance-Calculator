@@ -7,8 +7,9 @@ const Circle = () => {
     const [outputValue, setOutputValue] = useState('');
 
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-        solution(e.target.value);
+        const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
+        setInputValue(value);
+        solution(value);
     };
 
     const solution = (value = inputValue) => {
@@ -21,7 +22,7 @@ const Circle = () => {
     };
 
     return (
-        <div className='flex flex-col gap-10'>
+        <div className='flex flex-col gap-10 max-w-[340px] overflow-x-auto'>
             {outputValue ? (
                 <div
                     className="text-xl italic"
@@ -39,7 +40,7 @@ const Circle = () => {
             )}
 
             <span>
-                <span className='text-2xl mr-1.5 italic'>r</span>Radius<input className='ml-10 border-2 border-slate-500 w-36' value={inputValue} onChange={handleInputChange} placeholder="Enter value" type='number' style={{ '-webkit-appearance': 'none', '-moz-appearance': 'textfield', color: "white", backgroundColor: "transparent" }} />
+                <span className='text-2xl mr-1.5 italic'>r</span>Radius<input className='ml-10 text-white bg-transparent border-2 border-slate-500 w-36' type="text" inputMode="decimal" value={inputValue} onChange={handleInputChange} placeholder="Enter value" />
             </span>
 
             {outputValue ? (

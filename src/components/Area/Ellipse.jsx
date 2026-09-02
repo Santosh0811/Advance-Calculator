@@ -13,12 +13,12 @@ const Ellipse = () => {
   };
 
   const handleInputChangeAxis1 = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
     setinputAxisValue1(value);
   };
 
   const handleInputChangeAxis2 = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/(?!^-)[^0-9.]/g, "");
     setinputAxisValue2(value);
   };
 
@@ -32,85 +32,73 @@ const Ellipse = () => {
   }, [inputAxisValue1, inputAxisValue2]);
 
   return (
-    <div className=''>
-      <div className='flex flex-col gap-10'>
-        {outputValue ? (
-          <div
-            className="text-xl italic"
-            dangerouslySetInnerHTML={{
-              __html: katex.renderToString(`{\\text{Area of Ellipse}} ≈ {${outputValue.toFixed(5)}^2}`),
-            }}
+    <div className='flex flex-col gap-10 max-w-[340px] overflow-x-auto'>
+      {outputValue ? (
+        <div
+          className="text-xl italic"
+          dangerouslySetInnerHTML={{
+            __html: katex.renderToString(`{\\text{Area of Ellipse}} ≈ {${outputValue.toFixed(5)}^2}`),
+          }}
+        />
+      ) : (
+        <div
+          className="text-2xl italic"
+          dangerouslySetInnerHTML={{
+            __html: katex.renderToString('A = π \\times a \\times b'),
+          }}
+        />
+      )}
+
+      <div className='flex flex-col gap-2'>
+        <div>
+          <span className='text-2xl mr-2 italic'>a</span>Axis
+          <input
+            className='ml-5 text-white bg-transparent border-2 border-slate-500 w-36'
+            value={inputAxisValue1}
+            onChange={handleInputChangeAxis1}
+            placeholder="Enter value"
+            type="text"
+            inputMode="decimal"
           />
-        ) : (
+        </div>
+        <div>
+          <span className='text-2xl mr-2 italic'>b</span>Axis
+          <input
+            className='ml-5 text-white bg-transparent border-2 border-slate-500 w-36'
+            value={inputAxisValue2}
+            onChange={handleInputChangeAxis2}
+            placeholder="Enter value"
+            type="text"
+            inputMode="decimal"
+          />
+        </div>
+      </div>
+
+      {outputValue && (
+        <div className='flex flex-col'>
+          <span>Solution</span>
           <div
             className="text-2xl italic"
             dangerouslySetInnerHTML={{
               __html: katex.renderToString('A = π \\times a \\times b'),
             }}
           />
-        )}
-
-        <div className='flex flex-col gap-2'>
-          <div>
-            <span className='text-2xl mr-2 italic'>a</span>Axis
-            <input
-              className='ml-5 border-2 border-slate-500 w-36'
-              value={inputAxisValue1}
-              onChange={handleInputChangeAxis1}
-              placeholder="Enter value"
-              type='number'
-              style={{
-                '-webkit-appearance': 'none',
-                '-moz-appearance': 'textfield',
-                color: "white",
-                backgroundColor: "transparent"
-              }}
-            />
-          </div>
-          <div>
-            <span className='text-2xl mr-2 italic'>b</span>Axis
-            <input
-              className='ml-5 border-2 border-slate-500 w-36'
-              value={inputAxisValue2}
-              onChange={handleInputChangeAxis2}
-              placeholder="Enter value"
-              type='number'
-              style={{
-                '-webkit-appearance': 'none',
-                '-moz-appearance': 'textfield',
-                color: "white",
-                backgroundColor: "transparent"
-              }}
-            />
-          </div>
+          <div
+            className="text-2xl italic"
+            dangerouslySetInnerHTML={{
+              __html: katex.renderToString(`= ${Math.PI.toFixed(5)} \\times ${inputAxisValue1} \\times ${inputAxisValue2}`),
+            }}
+            style={{ marginLeft: "30px" }}
+          />
+          <div
+            className="text-2xl italic"
+            dangerouslySetInnerHTML={{
+              __html: katex.renderToString(`≈ {${outputValue.toFixed(5)}^2}`),
+            }}
+            style={{ marginLeft: "30px" }}
+          />
         </div>
-
-        {outputValue && (
-          <div className='flex flex-col'>
-            <span>Solution</span>
-            <div
-              className="text-2xl italic"
-              dangerouslySetInnerHTML={{
-                __html: katex.renderToString('A = π \\times a \\times b'),
-              }}
-            />
-            <div
-              className="text-2xl italic"
-              dangerouslySetInnerHTML={{
-                __html: katex.renderToString(`= ${Math.PI.toFixed(5)} \\times ${inputAxisValue1} \\times ${inputAxisValue2}`),
-              }}
-              style={{ marginLeft: "30px" }}
-            />
-            <div
-              className="text-2xl italic"
-              dangerouslySetInnerHTML={{
-                __html: katex.renderToString(`≈ {${outputValue.toFixed(5)}^2}`),
-              }}
-              style={{ marginLeft: "30px" }}
-            />
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
