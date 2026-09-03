@@ -59,7 +59,7 @@ const Temperature = () => {
         setOutputValue(convertedValue.toFixed(2));
     };
     return (
-        <div className='border-2 rounded-lg border-slate-300 mt-2 flex justify-center items-center flex-col p-2'>
+        <div className='border-2 rounded-lg border-slate-300 lg:mt-1 mt-2 flex justify-center items-center flex-col p-2'>
             <div className='bg-slate-400 rounded-sm w-full text-center p-1'>
                 Temperature Convertor
             </div>

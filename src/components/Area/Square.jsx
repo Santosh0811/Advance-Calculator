@@ -22,57 +22,52 @@ const Square = () => {
     };
 
     return (
-        <div className=''>
-            <div className='flex flex-col gap-10 max-w-[340px] overflow-x-auto'>
-                {outputValue ? (
-                    <div
-                        className="text-xl italic"
-                        dangerouslySetInnerHTML={{
-                            __html: katex.renderToString(`{\\text{Area of Square}} ≈ {${outputValue.toFixed(5)}^2}`),
-                        }}
-                    />
-                ) : (
+        <div className='flex flex-col gap-10 max-w-[340px] overflow-x-auto'>
+            {outputValue ? (
+                <div
+                    className="text-xl italic"
+                    dangerouslySetInnerHTML={{
+                        __html: katex.renderToString(`{\\text{Area of Square}} ≈ {${outputValue.toFixed(5)}^2}`),
+                    }}
+                />
+            ) : (
+                <div
+                    className="text-2xl italic"
+                    dangerouslySetInnerHTML={{
+                        __html: katex.renderToString('A = a^2'),
+                    }}
+                />
+            )}
+
+            <span>
+                <span className='text-2xl mr-1.5 italic'>a</span>Side<input className='ml-10 text-white bg-transparent border-2 border-slate-500 w-36' type="text" inputMode="decimal" value={inputValue} onChange={handleInputChange} placeholder="Enter value" />
+            </span>
+
+            {outputValue && (
+                <div className='flex flex-col'>
+                    <span>Solution</span>
                     <div
                         className="text-2xl italic"
                         dangerouslySetInnerHTML={{
                             __html: katex.renderToString('A = a^2'),
                         }}
                     />
-                )}
-
-
-                <span>
-                    <span className='text-2xl mr-1.5 italic'>a</span>Side<input className='ml-10 text-white bg-transparent border-2 border-slate-500 w-36' type="text" inputMode="decimal" value={inputValue} onChange={handleInputChange} placeholder="Enter value" />
-                </span>
-
-                {outputValue ? (
-                    <div className='flex flex-col'>
-                        <span>Solution</span>
-                        <div
-                            className="text-2xl italic"
-                            dangerouslySetInnerHTML={{
-                                __html: katex.renderToString('A = a^2'),
-                            }}
-                        />
-                        <div
-                            className="text-2xl italic"
-                            dangerouslySetInnerHTML={{
-                                __html: katex.renderToString(`= ${inputValue}^2`),
-                            }}
-                            style={{ marginLeft: "30px" }}
-                        />
-                        <div
-                            className="text-2xl italic"
-                            dangerouslySetInnerHTML={{
-                                __html: katex.renderToString(`≈ {${outputValue.toFixed(5)}^2}`),
-                            }}
-                            style={{ marginLeft: "30px" }}
-                        />
-                    </div>
-                ) : ""}
-            </div>
-
-
+                    <div
+                        className="text-2xl italic"
+                        dangerouslySetInnerHTML={{
+                            __html: katex.renderToString(`= ${inputValue}^2`),
+                        }}
+                        style={{ marginLeft: "30px" }}
+                    />
+                    <div
+                        className="text-2xl italic"
+                        dangerouslySetInnerHTML={{
+                            __html: katex.renderToString(`≈ {${outputValue.toFixed(5)}^2}`),
+                        }}
+                        style={{ marginLeft: "30px" }}
+                    />
+                </div>
+            )}
         </div>
     )
 }

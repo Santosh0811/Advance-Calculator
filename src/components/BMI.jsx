@@ -53,7 +53,7 @@ const BMI = () => {
 
 
     return (
-        <div className='border-2 border-slate-300 rounded-lg mt-2 flex justify-center items-center flex-col p-2'>
+        <div className='border-2 border-slate-300 rounded-lg lg:mt-1 mt-2 flex justify-center items-center flex-col p-2'>
             <div className='bg-slate-400 rounded-sm w-full text-center p-1'>
                 BMI Calculator
             </div>

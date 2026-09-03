@@ -57,7 +57,7 @@ const Shapes = () => {
                                         <h3 className="font-semibold text-gray-900 dark:text-white">
                                             Area of {shape.charAt(0).toUpperCase() + shape.slice(1)}
                                         </h3>
-                                        <i className="fa-solid fa-circle-xmark" onClick={handlePopoverClick}></i>
+                                        <i className="fa-solid fa-circle-xmark text-xl hover:text-gray-200" onClick={handlePopoverClick}></i>
                                     </div>
                                     <div className="px-3 py-2">
                                         {popoverContent}

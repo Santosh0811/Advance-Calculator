@@ -43,7 +43,7 @@ const Circle = () => {
                 <span className='text-2xl mr-1.5 italic'>r</span>Radius<input className='ml-10 text-white bg-transparent border-2 border-slate-500 w-36' type="text" inputMode="decimal" value={inputValue} onChange={handleInputChange} placeholder="Enter value" />
             </span>
 
-            {outputValue ? (
+            {outputValue && (
                 <div className='flex flex-col'>
                     <span>Solution</span>
                     <div
@@ -67,7 +67,7 @@ const Circle = () => {
                         style={{ marginLeft: "30px" }}
                     />
                 </div>
-            ) : ""}
+            )}
         </div>
     )
 }
