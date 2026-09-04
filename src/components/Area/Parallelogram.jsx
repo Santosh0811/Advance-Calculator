@@ -37,7 +37,12 @@ const Parallelogram = () => {
         <div
           className="text-xl italic"
           dangerouslySetInnerHTML={{
-            __html: katex.renderToString(`{\\text{Area of Parallelogram}} ≈ {${outputValue.toFixed(5)}^2}`),
+            __html: katex.renderToString(
+              `\\text{Area of Parallelogram} \\approx ${outputValue.toFixed(5).endsWith(".00000")
+                ? outputValue.toFixed(0)
+                : outputValue.toFixed(5).replace(/(\.\d{2,5}?)0+$/, "$1")
+              }^2`
+            ),
           }}
         />
       ) : (
@@ -93,7 +98,10 @@ const Parallelogram = () => {
           <div
             className="text-2xl italic"
             dangerouslySetInnerHTML={{
-              __html: katex.renderToString(`≈ {${outputValue.toFixed(5)}^2}`),
+              __html: katex.renderToString(`\\approx ${outputValue.toFixed(5).endsWith(".00000")
+                ? outputValue.toFixed(0)
+                : outputValue.toFixed(5).replace(/(\.\d{2,5}?)0+$/, "$1")
+                }^2`),
             }}
             style={{ marginLeft: "30px" }}
           />
