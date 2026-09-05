@@ -4,7 +4,7 @@ const FontAwesome = () => {
   useEffect(() => {
     const script = document.createElement("script");
 
-    script.src = import.meta.env.VITE_FONT_AWESOME_ID;
+    script.src = `https://kit.fontawesome.com/${import.meta.env.VITE_FONT_AWESOME_ID}.js`;
     script.crossOrigin = "anonymous";
 
     document.body.appendChild(script);
